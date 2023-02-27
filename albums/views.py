@@ -12,3 +12,6 @@ class AlbumView(ListCreateAPIView):
 
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
